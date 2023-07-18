@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script>
+    toastr.options = {
+        "closeButton": true,
+        "progressBar": true,
+        "positionClass": "toast-bottom-right",
+        "timeOut": "5000"
+    };
+</script>
+
+<div class="text-center">
+    <h1 class="display-4">HU01</h1>
+    <p>Search Company By Id</p>
+    <hr />
+    <form method="get" action="@Url.Action("Search", "Home")">
+        <div>
+            <label for="txtId">ID:</label>
+            <input type="text" id="txtId" name="id" />
+            <button type="submit">Buscar</button>
+        </div>
+    </form>
+
+    <hr />
+
+    <h1 class="display-4">HU02</h1>
+    <p>Search Department By Id</p>
+    <hr />
+    <form method="get" action="@Url.Action("Search2", "Home")">
+        <div>
+            <label for="txtId">ID:</label>
+            <input type="text" id="txtId" name="id" />
+            <button type="submit">Buscar</button>
+        </div>
+    </form>
+
+    <hr />
+    
+
+    
+</div>
+
+@if (TempData["Error"] != null)
+{
+    <script>
+        toastr.error("@TempData["Error"]");
+    </script>
+}
+

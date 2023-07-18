@@ -1,0 +1,59 @@
+﻿@model Prueba.Models.Department
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Department</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LevelOrganization)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LevelOrganization)
+        </dd>
+    </dl>
+    @if (Model.DepartmentsCompany != null && Model.DepartmentsCompany.Any())
+    {
+        <h5>Companies Linked</h5>
+        <hr />
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Company</th>
+                    <th>Number of Employees</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var company in Model.DepartmentsCompany)
+                {
+                    <tr>
+                        <td>@company.Id</td>
+                        <td>@company.Company.Name</td>
+                        <td>@company.NumberEmployees</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>Companies Not Found </p>
+    }
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

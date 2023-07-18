@@ -1,0 +1,97 @@
+﻿@model Prueba.Models.Company
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Company</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BusinessName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BusinessName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RegisterDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RegisterDate)
+        </dd>
+    </dl>
+    @if (Model.Binnacles != null && Model.Binnacles.Any())
+    {
+        <h5>Binnacle</h5>
+        <hr />
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Details</th>
+                    <th>Date time</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var binnacle in Model.Binnacles)
+                {
+                    <tr>
+                        <td>@binnacle.Id</td>
+                        <td>@binnacle.Details</td>
+                        <td>@binnacle.dateTime</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p> Binnacles Not found.</p>
+    }
+
+    @if (Model.DepartmentsCompany != null && Model.DepartmentsCompany.Any())
+    {
+        <h5>Departments</h5>
+        <hr />
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Number of Employees</th>
+                    <th>Level Organization</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var department in Model.DepartmentsCompany)
+                {
+                    <tr>
+                        <td>@department.Id</td>
+                        <td>@department.Department.Name</td>
+                        <td>@department.NumberEmployees</td>
+                        <td>@department.Department.LevelOrganization</td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>Departments not found.</p>
+    }
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
